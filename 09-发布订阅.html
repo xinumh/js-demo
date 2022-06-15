@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <script>
+    /* 发布订阅 */
+    var event = {
+
+      clientList: [],
+      listen: function(key, fn) {
+        if (!this.clientList[key]) {
+          this.clientList[key] = []
+        }
+
+        this.clientList[key].push(fn)
+      },
+
+      trigger: function() {
+        var key = Array.prototype.shift.call(arguments)
+
+        fns = this.clientList[key]
+
+        if (!fns || fns.length === 0) {
+          return false
+        }
+
+        for (var i = 0, fn;fn = fns[i++];) {
+          fn.apply(this, arguments)
+        }
+      },
+
+      /* 取消订阅 */
+      remove: function(key, fn) {
+
+        var fns = this.clientList[key]
+
+        if (!fns) {
+          return false
+        }
+
+        if (!fn) {
+          fns && (fns.length = 0)
+        } else {
+
+          for (var l = fns.length-1;l >= 0; l--) {
+            var _fn = fns[l]
+            if (_fn === fn) {
+              fns.splice(l, 1)
+            }
+          }
+        }
+      }
+    }
+
+    var installEvent = function (obj) {
+      for (var i in event) {
+        obj[i] = event[i]
+      }
+    }
+
+    var salesOffices = {}
+
+    installEvent(salesOffices)
+
+    salesOffices.listen('111111', function(price) {
+      console.log('价格=', price);
+    })
+
+    salesOffices.trigger('111111', 123)
+    salesOffices.remove('111111')
+
+    salesOffices.trigger('111111', 123)
+  </script> -->
+
+  <button>订阅</button>
+  <script>
+
+    class Event {
+
+      constructor() {
+        this.callbacks = {}
+      }
+
+      on (name, fn) {
+        (this.callbacks[name] || (this.callbacks[name] = [])).push(fn)
+      }
+
+      emit (name, ...args) {
+        const cbs = this.callbacks[name]
+        if (cbs) {
+          cbs.forEach(cb => {
+            cb.call(this, args)
+          });
+        }
+      }
+
+      off (name) {
+        this.callbacks[name] = null
+      }
+    }
+
+    const event = new Event()
+
+    console.log(`event`, event)
+    event.on('11', (a) => {alert(a)})
+
+    event.emit('11', 1, 2)
+
+    // event.off('11')
+  </script>
+</body>
+</html>

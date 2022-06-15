@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style> 
+   .showPic {
+     width: 483px;
+     height: 20px;
+     border: 1px solid red;
+     overflow: hidden;
+     margin: 0 auto;
+   }
+
+   .showPic .ul {
+     animation: moving 2s infinite;
+
+     height: 200%;
+     display: flex;
+     flex-direction: column;
+     transition: all 1s ease-out;
+   }
+
+   .showPic .li {
+     width: 100%;
+   }
+
+   @keyframes moving {
+     from {
+       transform: translateY(0)
+     }
+
+     to {
+       transform: translateY(-20px)
+     }
+   }
+  </style>
+</head>
+<body>
+  <div class='showPic'>
+    <div  class='ul'>
+      <div class='li'>111</div>
+      <div class='li'>222</div>
+      <div class='li'>333</div>
+      <div class='li'>444</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>o4-makeArray-数组化</title>
+</head>
+<body>
+  <script>
+
+    var makeArray = function (array) {
+      var ret = []
+      if (array) {
+
+        var i = array.length
+        /* window、 string、function 都有length */
+      
+        if (i === null || typeof array === 'string' || array.setInerval) {
+
+          ret[0] = array
+        } else {
+
+          while(i) {
+            alert(i)
+
+            ret[--i] = array[i]
+          }
+        }
+      }
+
+      return ret
+    }
+
+    var arrayLike = {
+      a: 1,
+      0: 'a',
+      1: 'b',
+      length: 2
+    }
+    console.log(`makeArray`, makeArray(arrayLike))
+  </script>
+</body>
+</html>

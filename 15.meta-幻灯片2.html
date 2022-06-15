@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Refresh" content="5;URL=15.meta-幻灯片1.html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let count = 5
+    setInterval(() => {
+      console.log(count)
+
+      document.documentElement.innerHTML = count
+      count--;
+    }, 1000)
+  </script>
+</body>
+</html>

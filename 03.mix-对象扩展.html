@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03.mix-对象扩展</title>
+</head>
+<body>
+  <script>
+    function mix(target, source) {
+      var args = [].slice.call(arguments),
+          i = 1,
+          key,
+          /* 如果最后参数是Boolean，判定是否覆写同名属性 */
+          ride = typeof args[args.length - 1] === 'boolean' ? args.pop() : true
+      
+      if (args.length === 1) {
+        console.log(`this.window`, !this.window)
+        target = !this.window ? this : {}
+        i = 0
+      }
+
+      while ((source = args[i++])) {
+        for (key in source) {
+
+          if (ride || !(key in target)) {
+
+            target[key] = source[key]
+          }
+        }
+
+      }
+
+      return target
+    }
+
+
+    const a = { a: 1}
+    const b = { a: 2, b: 2, }
+
+    const res = mix(a, b, { c: 3})
+
+    console.log(`res`, res)
+
+
+
+  </script>
+</body>
+</html>
